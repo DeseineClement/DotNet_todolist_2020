@@ -26,6 +26,14 @@ namespace TodoList.Contexts
 
         public async Task<List<Todo>> GetTodos() => await Todos.ToListAsync();
 
+        public async Task<int> StoreTodo(Todo item)
+        {
+            if (item.Id == 0)
+            {
+                await Todos.AddAsync(item);
+            }
+            return await SaveChangesAsync();
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Filename={DbPath}");

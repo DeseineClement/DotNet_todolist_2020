@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using TodoList.Contexts;
 using TodoList.Models;
+using TodoList.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 
@@ -31,12 +32,8 @@ namespace TodoList
 	    public App ()
 		{
 			InitializeComponent();
-		   
-		    TodoContext.Add(new Todo() {Title = "Test", Body = "Body", DueDate = new DateTime(), Done = false});
-		    TodoContext.SaveChanges();
-
-            MainPage = new MainPage();
-        }
+		    MainPage = new NavigationPage(new MainPage());
+		}
 
 		protected override void OnStart ()
 		{

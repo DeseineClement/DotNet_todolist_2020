@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TodoList.Models;
 using Xamarin.Forms;
 
-namespace TodoList
+namespace TodoList.Views
 {
 	public partial class MainPage : ContentPage
 	{
@@ -18,6 +19,10 @@ namespace TodoList
 	    {
 	        base.OnAppearing();
 	        todoList.ItemsSource = await App.TodoContext.GetTodos();
+	        createButton.Clicked += async (sender, args) =>
+	        {
+	            await Navigation.PushAsync(new CreatePage());
+	        };
 	    }
     }
 }
