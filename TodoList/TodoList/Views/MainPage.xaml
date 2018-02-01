@@ -2,24 +2,84 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TodoList"
-             x:Class="TodoList.Views.MainPage">
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ListView x:Name="todoList" Grid.Row="0">
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Class="TodoList.Views.MainPage" Title="Todo List">
+    
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" >
+          
+                <Entry x:Name="titleEntry" Text="{Binding Title}" Placeholder="Title"/>
+       
+                <Entry x:Name="bodyEntry" Text="{Binding Body}" Placeholder="Body"/>
+           
+                <DatePicker x:Name="dueDatePicker" Date="{Binding DueDate}">
+                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <system:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2017</x:String>
+                            </x:Arguments>
+                        </system:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <system:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </system:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+          
+                <Button x:Name="storeButton" Text="Create" Clicked="OnCreateButtonOnClicked"></Button>
+           
+        </StackLayout>
+        <ListView x:Name="todoList">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}" Detail="{Binding DueDate}"></TextCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+
+                            <StackLayout x:Name="stackView" IsVisible="True" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label x:Name="titleLabel" FontSize="20" HorizontalOptions="FillAndExpand" FontAttributes="Bold"  Text="{Binding Title}"></Label>
+                                    <Button Text="Edit" HorizontalOptions="End" Clicked="ButtonEditOnClicked"></Button>
+                                </StackLayout>
+                                <Label x:Name="dueDateLabel" FontAttributes="Italic" Text="{Binding DueDate, StringFormat='{0:MMMM d, yyyy}'}"></Label>
+                                <Label x:Name="bodyLabel" Text="{Binding Body}"></Label>
+                            </StackLayout>
+
+                            <StackLayout x:Name="stackEdition" IsVisible="False" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry x:Name="titleEntry" HorizontalOptions="FillAndExpand" Text="{Binding Title}" Placeholder="Title"/>
+                                    <Button Text="Done" HorizontalOptions="End" Clicked="ButtonDoneOnClicked"></Button>
+                                </StackLayout>
+
+                                <Entry x:Name="bodyEntry" Text="{Binding Body}" Placeholder="Body"/>
+
+                                <DatePicker x:Name="dueDatePicker" Date="{Binding DueDate}">
+                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                    <DatePicker.MinimumDate>
+                                        <system:DateTime x:FactoryMethod="Parse">
+                                            <x:Arguments>
+                                                <x:String>Jan 1 2017</x:String>
+                                            </x:Arguments>
+                                        </system:DateTime>
+                                    </DatePicker.MinimumDate>
+                                    <DatePicker.MaximumDate>
+                                        <system:DateTime x:FactoryMethod="Parse">
+                                            <x:Arguments>
+                                                <x:String>Dec 31 2050</x:String>
+                                            </x:Arguments>
+                                        </system:DateTime>
+                                    </DatePicker.MaximumDate>
+                                </DatePicker>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout Grid.Row="1">
-            <Button x:Name="createButton" Text="Add a Todo"></Button>
-        </StackLayout>
-    </Grid>
-       
+    </StackLayout>
 
 </ContentPage>
