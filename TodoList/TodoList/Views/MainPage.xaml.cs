@@ -47,7 +47,7 @@ namespace TodoList.Views
 
         private void ButtonDoneOnClicked(object sender, EventArgs e)
         {
-            var stack = (((sender as Button)?.Parent as Grid)?.Parent as StackLayout)?.Parent as StackLayout;
+            var stack = ((((sender as Button)?.Parent as StackLayout)?.Parent as Grid)?.Parent as StackLayout)?.Parent as StackLayout;
             stack.FindByName<StackLayout>("stackView").IsVisible = true;
             stack.FindByName<StackLayout>("stackEdition").IsVisible = false;
         }

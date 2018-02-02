@@ -13,6 +13,7 @@ namespace TodoList.Models
     {
         private string title;
         private string body;
+        private bool done;
         private DateTime dueDate;
 
         [Key]
@@ -59,7 +60,21 @@ namespace TodoList.Models
                 }
             }
         }
-        public bool Done { get; set; }
+
+        public bool Done
+        {
+            get => done;
+            set
+            {
+                if (done != value)
+                {
+                    done = value;
+                    App.TodoContext.StoreTodo(this);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Done"));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
