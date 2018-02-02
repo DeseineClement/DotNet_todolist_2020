@@ -49,30 +49,42 @@
                             </StackLayout>
 
                             <StackLayout x:Name="stackEdition" IsVisible="False" HorizontalOptions="FillAndExpand">
-                                <StackLayout Orientation="Horizontal">
-                                    <Entry x:Name="titleEntry" HorizontalOptions="FillAndExpand" Text="{Binding Title}" Placeholder="Title"/>
-                                    <Button Text="Done" HorizontalOptions="End" Clicked="ButtonDoneOnClicked"></Button>
-                                </StackLayout>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50*" />
+                                        <ColumnDefinition Width="50*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Entry x:Name="bodyEntry" Text="{Binding Body}" Placeholder="Body"/>
+                                    <Entry  x:Name="titleEntry" Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" Text="{Binding Title}" Placeholder="Title"/>
+                                    
+                                    <Button Grid.Column="1" Grid.Row="0" Text="Done" HorizontalOptions="End" Clicked="ButtonDoneOnClicked"></Button>
 
-                                <DatePicker x:Name="dueDatePicker" Date="{Binding DueDate}">
-                                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
-                                    <DatePicker.MinimumDate>
-                                        <system:DateTime x:FactoryMethod="Parse">
-                                            <x:Arguments>
-                                                <x:String>Jan 1 2017</x:String>
-                                            </x:Arguments>
-                                        </system:DateTime>
-                                    </DatePicker.MinimumDate>
-                                    <DatePicker.MaximumDate>
-                                        <system:DateTime x:FactoryMethod="Parse">
-                                            <x:Arguments>
-                                                <x:String>Dec 31 2050</x:String>
-                                            </x:Arguments>
-                                        </system:DateTime>
-                                    </DatePicker.MaximumDate>
-                                </DatePicker>
+                                    <Entry  x:Name="bodyEntry" Grid.Column="0" Grid.Row="1"  HorizontalOptions="FillAndExpand" Text="{Binding Body}" Placeholder="Body"/>
+                                    
+                                    <DatePicker x:Name="dueDatePicker"  Grid.Column="0" Grid.Row="2" Date="{Binding DueDate}">
+                                        <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                                        <DatePicker.MinimumDate>
+                                            <system:DateTime x:FactoryMethod="Parse">
+                                                <x:Arguments>
+                                                    <x:String>Jan 1 2017</x:String>
+                                                </x:Arguments>
+                                            </system:DateTime>
+                                        </DatePicker.MinimumDate>
+                                        <DatePicker.MaximumDate>
+                                            <system:DateTime x:FactoryMethod="Parse">
+                                                <x:Arguments>
+                                                    <x:String>Dec 31 2050</x:String>
+                                                </x:Arguments>
+                                            </system:DateTime>
+                                        </DatePicker.MaximumDate>
+                                    </DatePicker>
+                                </Grid>
+
+
+                               
                             </StackLayout>
 
                         </StackLayout>
