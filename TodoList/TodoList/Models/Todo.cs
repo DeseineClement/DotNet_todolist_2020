@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace TodoList.Models
 {
@@ -12,6 +14,7 @@ namespace TodoList.Models
         private string title;
         private string body;
         private DateTime dueDate;
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -58,6 +61,5 @@ namespace TodoList.Models
         }
         public bool Done { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
-
     }
 }

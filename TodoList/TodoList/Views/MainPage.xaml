@@ -66,10 +66,10 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Entry  x:Name="titleEntry" Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" Text="{Binding Title}" Placeholder="Title"/>
-
                                     <Button Grid.Column="1" Grid.Row="0" Text="Done" HorizontalOptions="End" Clicked="ButtonDoneOnClicked"></Button>
 
                                     <Entry  x:Name="bodyEntry" Grid.Column="0" Grid.Row="1"  HorizontalOptions="FillAndExpand" Text="{Binding Body}" Placeholder="Body"/>
+                                    <Button Grid.Column="1" Grid.Row="1" Text="Delete" HorizontalOptions="End" Clicked="ButtonDeleteOnClicked" BindingContext="{Binding}"></Button>
 
                                     <DatePicker x:Name="dueDatePicker"  Grid.Column="0" Grid.Row="2" Date="{Binding DueDate}">
                                         <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>

@@ -20,33 +20,45 @@ namespace TodoList.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            todoList.ItemsSource = await App.TodoContext.GetTodos();
+            todoList.ItemsSource = new ObservableCollection<Todo>(await App.TodoContext.GetTodos());
         }
 
         private async void OnCreateButtonOnClicked(object sender, EventArgs args)
         {
-            await App.TodoContext.StoreTodo(new Todo()
+            var newTodo = new Todo()
             {
                 Title = titleEntry.Text,
                 Body = bodyEntry.Text,
                 Done = false,
                 DueDate = dueDatePicker.Date
-            });
-            todoList.ItemsSource = new ObservableCollection<Todo>(await App.TodoContext.GetTodos());
+            };
+            await App.TodoContext.StoreTodo(newTodo);
+            todoList.BeginRefresh();
+            (todoList.ItemsSource as ObservableCollection<Todo>)?.Add(newTodo);
+            todoList.EndRefresh();
         }
 
         private void ButtonEditOnClicked(object sender, EventArgs e)
         {
-            var stack = (((sender as Button).Parent as StackLayout).Parent as StackLayout).Parent as StackLayout;
+            var stack = (((sender as Button)?.Parent as StackLayout)?.Parent as StackLayout)?.Parent as StackLayout;
             stack.FindByName<StackLayout>("stackView").IsVisible = false;
             stack.FindByName<StackLayout>("stackEdition").IsVisible = true;
         }
 
-        private async void ButtonDoneOnClicked(object sender, EventArgs e)
+        private void ButtonDoneOnClicked(object sender, EventArgs e)
         {
-            var stack = (((sender as Button).Parent as Grid).Parent as StackLayout).Parent as StackLayout;
+            var stack = (((sender as Button)?.Parent as Grid)?.Parent as StackLayout)?.Parent as StackLayout;
             stack.FindByName<StackLayout>("stackView").IsVisible = true;
             stack.FindByName<StackLayout>("stackEdition").IsVisible = false;
+        }
+
+        private async void ButtonDeleteOnClicked(object sender, EventArgs e)
+        {
+            var todo = (sender as Button)?.BindingContext as Todo;
+            todoList.BeginRefresh();
+            (todoList.ItemsSource as ObservableCollection<Todo>)?.Remove(todo);
+            todoList.EndRefresh();
+            await App.TodoContext.DeleteTodo(todo);
         }
     }
 }
