@@ -39,6 +39,12 @@ namespace TodoList.Contexts
             Todos.Remove(todo);
             return await SaveChangesAsync();
         }
+
+        public async Task<int> DeleteAllTodos()
+        {
+            Todos.RemoveRange(Todos);
+            return await SaveChangesAsync();
+        }
         public async Task<Todo> GetTodo(int id) => await Todos.SingleAsync(todo => todo.Id == id);
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

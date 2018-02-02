@@ -5,40 +5,44 @@
              xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="TodoList.Views.MainPage" Title="Todo List">
     
-    <StackLayout Margin="0,10,0,20">
+    <StackLayout>
         <StackLayout Margin="0,0,0,10">
             <Label Text="Create a Task" FontSize="30" FontAttributes="Bold"></Label>
         </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <StackLayout>
-                <Entry  x:Name="titleEntry" Text="{Binding Title}" Placeholder="Title"/>
-                <Entry  x:Name="bodyEntry" Text="{Binding Body}" Placeholder="Body"/>
-                <DatePicker x:Name="dueDatePicker" Date="{Binding DueDate}">
-                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
-                    <DatePicker.MinimumDate>
-                        <system:DateTime x:FactoryMethod="Parse">
-                            <x:Arguments>
-                                <x:String>Jan 1 2017</x:String>
-                            </x:Arguments>
-                        </system:DateTime>
-                    </DatePicker.MinimumDate>
-                    <DatePicker.MaximumDate>
-                        <system:DateTime x:FactoryMethod="Parse">
-                            <x:Arguments>
-                                <x:String>Dec 31 2050</x:String>
-                            </x:Arguments>
-                        </system:DateTime>
-                    </DatePicker.MaximumDate>
-                </DatePicker>
+        <StackLayout Margin="0,10,0,20">
+            <StackLayout Orientation="Horizontal">
+                <StackLayout>
+                    <Entry  x:Name="titleEntry" Text="{Binding Title}" Placeholder="Title"/>
+                    <Entry  x:Name="bodyEntry" Text="{Binding Body}" Placeholder="Body"/>
+                    <DatePicker x:Name="dueDatePicker" Date="{Binding DueDate}">
+                        <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                        <DatePicker.MinimumDate>
+                            <system:DateTime x:FactoryMethod="Parse">
+                                <x:Arguments>
+                                    <x:String>Jan 1 2017</x:String>
+                                </x:Arguments>
+                            </system:DateTime>
+                        </DatePicker.MinimumDate>
+                        <DatePicker.MaximumDate>
+                            <system:DateTime x:FactoryMethod="Parse">
+                                <x:Arguments>
+                                    <x:String>Dec 31 2050</x:String>
+                                </x:Arguments>
+                            </system:DateTime>
+                        </DatePicker.MaximumDate>
+                    </DatePicker>
+                </StackLayout>
+                <Button FontAttributes="Bold" Text="Create a new Task" Clicked="OnCreateButtonOnClicked"></Button>
             </StackLayout>
-            <Button FontAttributes="Bold" Text="Create a new Task" Clicked="OnCreateButtonOnClicked"></Button>
         </StackLayout>
+        
 
        
         <ListView x:Name="todoList">
             <ListView.Header>
-                <StackLayout>
-                    <Label Text="Your Tasks" FontSize="30" FontAttributes="Bold" Margin="0,0,0,10"></Label>
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                    <Label Text="Your Tasks" FontSize="30" FontAttributes="Bold"></Label>
+                    <Button Text="Clear"  FontSize="20" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Clicked="ButtonClearOnClicked"></Button>
                 </StackLayout>
             </ListView.Header>
             <ListView.ItemTemplate>

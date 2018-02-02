@@ -60,5 +60,13 @@ namespace TodoList.Views
             todoList.EndRefresh();
             await App.TodoContext.DeleteTodo(todo);
         }
+
+        private async void ButtonClearOnClicked(object sender, EventArgs e)
+        {
+            todoList.BeginRefresh();
+            (todoList.ItemsSource as ObservableCollection<Todo>)?.Clear();
+            todoList.EndRefresh();
+            await App.TodoContext.DeleteAllTodos();
+        }
     }
 }
