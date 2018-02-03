@@ -19,14 +19,14 @@
                         <DatePicker.MinimumDate>
                             <system:DateTime x:FactoryMethod="Parse">
                                 <x:Arguments>
-                                    <x:String>Jan 1 2017</x:String>
+                                    <x:String>Jan 1 2018</x:String>
                                 </x:Arguments>
                             </system:DateTime>
                         </DatePicker.MinimumDate>
                         <DatePicker.MaximumDate>
                             <system:DateTime x:FactoryMethod="Parse">
                                 <x:Arguments>
-                                    <x:String>Dec 31 2050</x:String>
+                                    <x:String>Dec 31 2020</x:String>
                                 </x:Arguments>
                             </system:DateTime>
                         </DatePicker.MaximumDate>
@@ -81,14 +81,14 @@
                                         <DatePicker.MinimumDate>
                                             <system:DateTime x:FactoryMethod="Parse">
                                                 <x:Arguments>
-                                                    <x:String>Jan 1 2017</x:String>
+                                                    <x:String>Jan 1 2018</x:String>
                                                 </x:Arguments>
                                             </system:DateTime>
                                         </DatePicker.MinimumDate>
                                         <DatePicker.MaximumDate>
                                             <system:DateTime x:FactoryMethod="Parse">
                                                 <x:Arguments>
-                                                    <x:String>Dec 31 2050</x:String>
+                                                    <x:String>Dec 31 2020</x:String>
                                                 </x:Arguments>
                                             </system:DateTime>
                                         </DatePicker.MaximumDate>
