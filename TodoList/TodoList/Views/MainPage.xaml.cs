@@ -32,6 +32,10 @@ namespace TodoList.Views
                 Done = false,
                 DueDate = dueDatePicker.Date
             };
+
+            titleEntry.Text = "";
+            bodyEntry.Text = "";
+            dueDatePicker.Date = dueDatePicker.MinimumDate;
             await App.TodoContext.StoreTodo(newTodo);
             todoList.BeginRefresh();
             (todoList.ItemsSource as ObservableCollection<Todo>)?.Add(newTodo);
