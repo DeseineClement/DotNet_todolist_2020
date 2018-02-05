@@ -15,6 +15,9 @@ namespace TodoList.Views
         public MainPage()
         {
             InitializeComponent();
+            dueDatePicker.MinimumDate = DateTime.Now;
+            dueDatePicker.MaximumDate = new DateTime(2030, 12, 31);
+
         }
 
         protected override async void OnAppearing()
@@ -53,7 +56,12 @@ namespace TodoList.Views
         {
             var stack = ((((sender as Button)?.Parent as StackLayout)?.Parent as Grid)?.Parent as StackLayout)?.Parent as StackLayout;
             stack.FindByName<StackLayout>("stackView").IsVisible = true;
-            stack.FindByName<StackLayout>("stackEdition").IsVisible = false;
+            var stackEdit = stack.FindByName<StackLayout>("stackEdition");
+                
+            stackEdit.IsVisible = false;
+            var dueDateEdit = stackEdit.FindByName<DatePicker>("dueDateEdit");
+            dueDateEdit.MinimumDate = DateTime.Now;
+            dueDateEdit.MaximumDate = new DateTime(2030, 12, 31);
         }
 
         private async void ButtonDeleteOnClicked(object sender, EventArgs e)

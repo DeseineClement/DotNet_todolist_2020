@@ -16,20 +16,7 @@
                     <Entry  x:Name="bodyEntry" Text="{Binding Body}" Placeholder="Body"/>
                     <DatePicker x:Name="dueDatePicker" Date="{Binding DueDate}">
                         <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
-                        <DatePicker.MinimumDate>
-                            <system:DateTime x:FactoryMethod="Parse">
-                                <x:Arguments>
-                                    <x:String>Jan 1 2018</x:String>
-                                </x:Arguments>
-                            </system:DateTime>
-                        </DatePicker.MinimumDate>
-                        <DatePicker.MaximumDate>
-                            <system:DateTime x:FactoryMethod="Parse">
-                                <x:Arguments>
-                                    <x:String>Dec 31 2020</x:String>
-                                </x:Arguments>
-                            </system:DateTime>
-                        </DatePicker.MaximumDate>
+                   
                     </DatePicker>
                 </StackLayout>
                 <Button FontAttributes="Bold" Text="Create a new Task" Clicked="OnCreateButtonOnClicked"></Button>
@@ -76,22 +63,9 @@
                                     <Entry Grid.Column="0" Grid.Row="1"  HorizontalOptions="FillAndExpand" Text="{Binding Body}" Placeholder="Body"/>
                                     <Button Grid.Column="1" Grid.Row="1" Text="Delete" HorizontalOptions="End" Clicked="ButtonDeleteOnClicked" BindingContext="{Binding}"></Button>
 
-                                    <DatePicker Grid.Column="0" Grid.Row="2" Date="{Binding DueDate}">
+                                    <DatePicker x:Name="dueDateEdit" Grid.Column="0" Grid.Row="2" Date="{Binding DueDate}">
                                         <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
-                                        <DatePicker.MinimumDate>
-                                            <system:DateTime x:FactoryMethod="Parse">
-                                                <x:Arguments>
-                                                    <x:String>Jan 1 2018</x:String>
-                                                </x:Arguments>
-                                            </system:DateTime>
-                                        </DatePicker.MinimumDate>
-                                        <DatePicker.MaximumDate>
-                                            <system:DateTime x:FactoryMethod="Parse">
-                                                <x:Arguments>
-                                                    <x:String>Dec 31 2020</x:String>
-                                                </x:Arguments>
-                                            </system:DateTime>
-                                        </DatePicker.MaximumDate>
+                                      
                                     </DatePicker>
                                 </Grid>
                             </StackLayout>
